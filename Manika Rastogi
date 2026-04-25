@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manika Rastogi — The Analytical Creative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0c;
+    --cream: #f5f0e8;
+    --blush: #e8c4b0;
+    --rose: #c4564a;
+    --gold: #b89a5a;
+    --slate: #2a2d35;
+    --mist: #e2ddd6;
+    --accent-green: #3d5a4c;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 3rem;
+    transition: background 0.4s, border-color 0.4s;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; letter-spacing: 0.15em;
+    color: var(--cream); text-decoration: none;
+    font-weight: 600; transition: color 0.4s;
+  }
+
+  nav.scrolled .nav-logo { color: var(--ink); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,232,0.75); text-decoration: none;
+    position: relative; padding-bottom: 2px; transition: color 0.3s;
+  }
+  nav.scrolled .nav-links a { color: var(--ink); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--rose); transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--slate);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 4rem 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(184,154,90,0.18) 0%, transparent 60%);
+  }
+
+  .hero-left::after {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-right {
+    background: var(--cream);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 4rem 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(196,86,74,0.08) 0%, transparent 70%);
+  }
+
+  /* Large centered name */
+  .hero-center {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20; text-align: center; pointer-events: none;
+    width: 300px;
+  }
+
+  .hero-center-line {
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .hero-name-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.8rem);
+    font-weight: 300; line-height: 1.1;
+    letter-spacing: 0.06em;
+    color: white;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.3);
+    position: relative; z-index: 1;
+  }
+
+  .hero-name-divider {
+    width: 40px; height: 1px; background: var(--gold);
+    margin: 0.75rem auto;
+  }
+
+  .hero-name-sub {
+    font-size: 0.5rem; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold);
+    display: block; position: relative; z-index: 1;
+  }
+
+  .hero-tag {
+    font-size: 0.6rem; letter-spacing: 0.35em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+
+  .hero-left .hero-tag { color: var(--gold); }
+  .hero-right .hero-tag { color: var(--rose); }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 0.95; font-weight: 300;
+    position: relative; z-index: 1;
+  }
+
+  .hero-left .hero-title { color: var(--cream); }
+  .hero-right .hero-title { color: var(--ink); }
+  .hero-title em { display: block; font-style: italic; font-weight: 300; }
+
+  .hero-sub {
+    margin-top: 2rem; font-size: 0.7rem;
+    line-height: 1.8; letter-spacing: 0.05em;
+    max-width: 300px; position: relative; z-index: 1;
+  }
+
+  .hero-left .hero-sub { color: rgba(245,240,232,0.55); }
+  .hero-right .hero-sub { color: rgba(14,13,12,0.5); }
+
+  .cs-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem; padding: 0.5rem 1rem;
+    border: 1px solid var(--gold);
+    font-size: 0.55rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    position: relative; z-index: 1;
+  }
+
+  .cs-badge-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .scroll-cue {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    z-index: 20; animation: nudge 2s ease-in-out infinite;
+  }
+
+  .scroll-cue span { font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+  @keyframes nudge {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* COMMON */
+  section { padding: 8rem 0; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+
+  .section-label {
+    font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
+
+  /* CS BANNER */
+  .cs-banner { background: var(--ink); padding: 3.5rem 0; }
+
+  .cs-banner-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 3rem;
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 4rem; align-items: center;
+  }
+
+  .cs-banner-label {
+    font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+
+  .cs-banner-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300;
+    color: var(--cream); line-height: 1.1; margin-bottom: 0.75rem;
+  }
+
+  .cs-banner-headline em { font-style: italic; color: var(--gold); }
+
+  .cs-banner-body {
+    font-size: 0.68rem; line-height: 2;
+    color: rgba(245,240,232,0.5); max-width: 650px;
+  }
+
+  .cs-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+  .cs-pill {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(184,154,90,0.3);
+    font-size: 0.55rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(184,154,90,0.8);
+  }
+
+  .cs-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+
+  .cs-stat-label {
+    font-size: 0.55rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(245,240,232,0.3); margin-top: 0.3rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--slate); color: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-left .section-label { color: var(--gold); }
+  .about-left .section-label::after { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .about-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300; line-height: 1.1; margin-bottom: 2rem;
+  }
+
+  .about-title em { font-style: italic; color: var(--blush); }
+
+  .about-body {
+    font-size: 0.72rem; line-height: 2.1;
+    color: rgba(245,240,232,0.65); letter-spacing: 0.03em; margin-bottom: 2.5rem;
+  }
+
+  .about-stats { display: flex; gap: 3rem; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,232,0.4); margin-top: 0.3rem;
+  }
+
+  .about-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .about-card {
+    padding: 2rem; border: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden; transition: border-color 0.3s;
+  }
+
+  .about-card:hover { border-color: var(--gold); }
+  .about-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
+  .about-card.corporate::before { background: var(--gold); }
+  .about-card.creative::before { background: var(--rose); }
+
+  .card-icon { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem; }
+  .about-card.corporate .card-icon { color: var(--gold); }
+  .about-card.creative .card-icon { color: var(--rose); }
+
+  .card-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; color: var(--cream); margin-bottom: 0.75rem;
+  }
+
+  .card-body { font-size: 0.68rem; line-height: 1.9; color: rgba(245,240,232,0.5); }
+
+  /* VENTURES */
+  .ventures { background: var(--cream); }
+
+  .ventures-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+
+  .ventures-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1;
+  }
+
+  .ventures-note { font-size: 0.65rem; color: rgba(14,13,12,0.4); max-width: 200px; text-align: right; line-height: 1.6; }
+
+  .ventures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(14,13,12,0.1); }
+
+  .venture-card {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid rgba(14,13,12,0.1);
+    position: relative; transition: background 0.4s; cursor: default;
+  }
+
+  .venture-card:last-child { border-right: none; }
+  .venture-card:hover { background: var(--slate); }
+  .venture-card:hover .venture-name { color: var(--cream); }
+  .venture-card:hover .venture-role { color: var(--gold); }
+  .venture-card:hover .venture-desc { color: rgba(245,240,232,0.5); }
+  .venture-card:hover .venture-num { color: rgba(245,240,232,0.1); }
+
+  .venture-card.has-link { cursor: pointer; }
+  .link-hint { display: none; margin-top: 1.5rem; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); align-items: center; gap: 0.5rem; }
+  .venture-card.has-link:hover .link-hint { display: flex; }
+
+  .venture-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;
+    color: rgba(14,13,12,0.06);
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    line-height: 1; transition: color 0.4s;
+  }
+
+  .venture-tag {
+    display: inline-block; font-size: 0.5rem; letter-spacing: 0.25em;
+    text-transform: uppercase; padding: 0.3rem 0.7rem;
+    border-radius: 20px; margin-bottom: 1.5rem;
+  }
+
+  .venture-tag.startup { background: rgba(180,154,90,0.15); color: var(--gold); }
+  .venture-tag.writing { background: rgba(196,86,74,0.12); color: var(--rose); }
+  .venture-tag.advocacy { background: rgba(61,90,76,0.12); color: var(--accent-green); }
+
+  .venture-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; transition: color 0.4s;
+  }
+
+  .venture-role { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); margin-bottom: 1.5rem; transition: color 0.4s; }
+
+  .venture-desc { font-size: 0.68rem; line-height: 1.9; color: rgba(14,13,12,0.55); transition: color 0.4s; }
+
+  /* PORTFOLIO */
+  .portfolio { background: #f0ece3; }
+
+  .portfolio-intro { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; margin-bottom: 4rem; }
+
+  .portfolio-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1;
+  }
+
+  .portfolio-title em { font-style: italic; color: var(--rose); }
+  .portfolio-description { font-size: 0.7rem; line-height: 2.1; color: rgba(14,13,12,0.55); padding-top: 0.5rem; }
+
+  .art-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+  .art-frame {
+    position: relative; background: white; padding: 1rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06); overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+
+  .art-frame:first-child { grid-column: span 2; grid-row: span 2; }
+  .art-frame:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+
+  .art-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .art-frame:first-child img { height: 420px; }
+  .art-frame:not(:first-child) img { height: 190px; }
+
+  .art-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 1rem 0.75rem;
+    background: linear-gradient(to top, rgba(14,13,12,0.7), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .art-frame:hover .art-caption { opacity: 1; }
+  .art-caption-text { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: white; }
+  .art-medium { font-size: 0.55rem; color: rgba(255,255,255,0.6); }
+
+  .view-more-row { display: flex; justify-content: center; margin-top: 3rem; }
+
+  .btn-view-more {
+    display: inline-flex; align-items: center; gap: 1rem;
+    padding: 1rem 2.5rem;
+    background: transparent; border: 1px solid var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink);
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+  }
+
+  .btn-view-more:hover { background: var(--ink); color: var(--cream); }
+  .btn-view-more .arrow { transition: transform 0.3s; }
+  .btn-view-more:hover .arrow { transform: translateX(4px); }
+
+  /* WRITING */
+  .writing { background: var(--slate); color: var(--cream); }
+  .writing-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; }
+  .writing-left .section-label { color: var(--gold); }
+  .writing-left .section-label::after { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .writing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; margin-bottom: 2rem;
+  }
+
+  .writing-title em { font-style: italic; color: var(--blush); display: block; }
+  .writing-note { font-size: 0.68rem; line-height: 2; color: rgba(245,240,232,0.45); margin-bottom: 1.5rem; }
+
+  .writing-quote { border-left: 2px solid var(--rose); padding: 1rem 1.5rem; margin-bottom: 1.25rem; }
+  .writing-quote-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; font-weight: 300; color: var(--blush); line-height: 1.6; }
+  .writing-quote-attr { font-size: 0.5rem; letter-spacing: 0.2em; color: rgba(245,240,232,0.3); margin-top: 0.5rem; }
+
+  .writing-cards { display: flex; flex-direction: column; gap: 1.5px; }
+
+  .writing-card {
+    padding: 2rem; background: rgba(255,255,255,0.03);
+    border-left: 2px solid rgba(255,255,255,0.06);
+    cursor: pointer; transition: all 0.3s; position: relative;
+  }
+
+  .writing-card:hover { background: rgba(255,255,255,0.07); border-left-color: var(--rose); padding-left: 2.5rem; }
+
+  .writing-card-num { font-size: 0.55rem; letter-spacing: 0.2em; color: rgba(245,240,232,0.2); margin-bottom: 0.75rem; }
+
+  .writing-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; transition: color 0.3s;
+  }
+
+  .writing-card:hover .writing-card-title { color: var(--blush); }
+  .writing-card-excerpt { font-size: 0.65rem; line-height: 1.8; color: rgba(245,240,232,0.35); }
+
+  .writing-card-type {
+    position: absolute; top: 2rem; right: 2rem;
+    font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose);
+  }
+
+  .writing-note-subtle {
+    margin-top: 1rem; font-size: 0.6rem; line-height: 1.8;
+    color: rgba(245,240,232,0.22); font-style: italic;
+    padding: 0.75rem 1rem; border-left: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* SKILLS */
+  .skills { background: var(--cream); }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; margin-top: 4rem; }
+
+  .skill-column-label {
+    font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(14,13,12,0.1);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .skill-column-label.corp { color: var(--gold); }
+  .skill-column-label.create { color: var(--rose); }
+  .skill-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .skill-dot.corp { background: var(--gold); }
+  .skill-dot.create { background: var(--rose); }
+  .skill-list { list-style: none; }
+
+  .skill-item {
+    padding: 0.9rem 0; border-bottom: 1px solid rgba(14,13,12,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; color: rgba(14,13,12,0.7);
+  }
+
+  .skill-level { display: flex; gap: 3px; }
+  .skill-dot-level { width: 5px; height: 5px; border-radius: 50%; background: rgba(14,13,12,0.15); }
+  .skill-dot-level.filled.corp { background: var(--gold); }
+  .skill-dot-level.filled.create { background: var(--rose); }
+
+  /* CONTACT */
+  .contact { background: var(--ink); color: var(--cream); padding: 8rem 0 4rem; }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-bottom: 6rem; }
+
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; line-height: 1; margin-bottom: 2rem;
+  }
+
+  .contact-title em { font-style: italic; color: var(--blush); display: block; }
+  .contact-tagline { font-size: 0.7rem; line-height: 2; color: rgba(245,240,232,0.4); max-width: 320px; }
+  .contact-links { display: flex; flex-direction: column; }
+
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    text-decoration: none; color: var(--cream); transition: all 0.3s;
+  }
+
+  .contact-link:hover { padding-left: 1rem; border-bottom-color: var(--gold); }
+  .contact-link-label { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.3); margin-bottom: 0.3rem; }
+  .contact-link-value { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; }
+  .contact-link-arrow { font-size: 1.2rem; color: var(--gold); opacity: 0; transition: opacity 0.3s; }
+  .contact-link:hover .contact-link-arrow { opacity: 1; }
+
+  .contact-footer {
+    padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .contact-footer-left { font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.3); }
+  .contact-footer-right { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; color: rgba(245,240,232,0.4); }
+
+  /* GALLERY OVERLAY */
+  .gallery-page {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: #f0ece3; overflow-y: auto;
+  }
+
+  .gallery-page.open { display: block; }
+
+  .gallery-header {
+    position: sticky; top: 0;
+    background: rgba(240,236,227,0.96); backdrop-filter: blur(12px);
+    padding: 1.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(14,13,12,0.08); z-index: 10;
+  }
+
+  .gallery-back {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink); cursor: pointer; background: none; border: none;
+    font-family: 'DM Mono', monospace; transition: color 0.3s;
+  }
+
+  .gallery-back:hover { color: var(--rose); }
+
+  .gallery-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; }
+  .gallery-count { font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(14,13,12,0.4); }
+
+  .gallery-body { padding: 4rem 3rem; max-width: 1200px; margin: 0 auto; }
+
+  .gallery-note { font-size: 0.6rem; color: rgba(14,13,12,0.35); font-style: italic; margin-bottom: 3rem; letter-spacing: 0.05em; }
+
+  .gallery-masonry { columns: 3; column-gap: 1.5rem; }
+
+  .gallery-item {
+    break-inside: avoid; margin-bottom: 1.5rem; background: white;
+    padding: 1rem; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .gallery-item:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+  .gallery-item img { width: 100%; display: block; object-fit: cover; }
+  .gallery-item-info { padding: 0.75rem 0.25rem 0; }
+  .gallery-item-title { font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(14,13,12,0.7); }
+  .gallery-item-medium { font-size: 0.55rem; color: rgba(14,13,12,0.35); margin-top: 0.2rem; }
+
+  .gallery-placeholder {
+    width: 100%; height: 260px;
+    background: linear-gradient(135deg, var(--mist) 0%, var(--blush) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+
+  .gallery-placeholder-text { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(14,13,12,0.4); }
+
+  /* FADE */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { min-height: 50vh; padding: 6rem 2rem 3rem; }
+    .hero-right { padding: 2rem 2rem 5rem; }
+    .hero-center { display: none; }
+    .about-grid, .ventures-grid, .writing-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .ventures-grid { gap: 1rem; }
+    .art-grid { grid-template-columns: 1fr 1fr; }
+    .art-frame:first-child { grid-column: span 2; }
+    .skills-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .section-inner { padding: 0 1.5rem; }
+    .portfolio-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cs-banner-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .cs-banner-label { display: none; }
+    .gallery-masonry { columns: 2; }
+    .gallery-body { padding: 2rem 1.5rem; }
+    .gallery-header { padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GALLERY OVERLAY -->
+<div class="gallery-page" id="galleryPage">
+  <div class="gallery-header">
+    <button class="gallery-back" onclick="closeGallery()">← Back to Portfolio</button>
+    <div class="gallery-title">Fashion Illustrations</div>
+    <div class="gallery-count" id="galleryCount"></div>
+  </div>
+  <div class="gallery-body">
+    <p class="gallery-note">✦ This gallery is designed to grow. Each illustration is a new chapter in an ongoing conversation between fabric, form, and feeling.</p>
+    <div class="gallery-masonry" id="galleryMasonry"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Manika Rastogi</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ventures">Work</a></li>
+    <li><a href="#art">Art</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">CS Executive · B.Com · Corporate Governance</div>
+    <h1 class="hero-title">The<br><em>Analytical</em><br>Mind.</h1>
+    <p class="hero-sub">Finance. Corporate law. Governance. Building the legal and strategic backbone of tomorrow's enterprises.</p>
+    <div class="cs-badge"><div class="cs-badge-dot"></div>Currently: CS Executive @ ICSI</div>
+  </div>
+
+  <div class="hero-center">
+    <div class="hero-center-line"></div>
+    <div class="hero-name-text">Manika<br>Rastogi</div>
+    <div class="hero-name-divider"></div>
+    <span class="hero-name-sub">The Analytical Creative</span>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-tag">Illustrator · Essayist · Startup Founder</div>
+    <h1 class="hero-title">The<br><em>Creative</em><br>Soul.</h1>
+    <p class="hero-sub">Fashion illustration. Feminist prose. Brands with a voice. Making beauty purposeful and commerce human.</p>
+  </div>
+
+  <div class="scroll-cue"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- CS BANNER -->
+<div class="cs-banner">
+  <div class="cs-banner-inner">
+    <div class="cs-banner-label">Credentials</div>
+    <div>
+      <h3 class="cs-banner-headline">A future Company Secretary — <em>and</em> a creative force for hire.</h3>
+      <p class="cs-banner-body">Pursuing CS Executive at ICSI alongside B.Com at University of Lucknow — one of the most demanding dual-track academic paths in India. Rigorous training in corporate law, secretarial practice, compliance, and governance. The candidate who arrives at a company boardroom ready — and who can also write the content that gets people through the door.</p>
+      <div class="cs-pills">
+        <span class="cs-pill">Corporate Law</span>
+        <span class="cs-pill">Secretarial Practice</span>
+        <span class="cs-pill">Governance & Compliance</span>
+        <span class="cs-pill">Advanced Excel</span>
+        <span class="cs-pill">Financial Markets</span>
+        <span class="cs-pill">Content Strategy</span>
+        <span class="cs-pill">Blog & Editorial Writing</span>
+      </div>
+    </div>
+    <div style="text-align:right; flex-shrink:0;">
+      <div class="cs-stat-num">2</div>
+      <div class="cs-stat-label">Degrees<br>Simultaneously</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left fade-up">
+        <div class="section-label">About</div>
+        <h2 class="about-title">Two worlds,<br>one <em>vision.</em></h2>
+        <p class="about-body">I'm Manika Rastogi — a second-year B.Com student at the University of Lucknow, concurrently pursuing CS Executive at ICSI. But credentials only tell half the story.<br><br>I'm equally a self-taught fashion illustrator, feminist essayist, startup founder, and content writer for a mental health platform. My work lives at the crossroads of structure and spontaneity — where corporate governance meets creative courage.<br><br>Whether you need a sharp legal mind, a content writer who understands tone and depth, or a collaborator who thinks in both spreadsheets and sketchbooks — I'm built for that overlap.</p>
+        <div class="about-stats">
+          <div><div class="stat-num">2</div><div class="stat-label">Startups Founded</div></div>
+          <div><div class="stat-num">3</div><div class="stat-label">Languages</div></div>
+          <div><div class="stat-num">10+</div><div class="stat-label">Illustrations</div></div>
+        </div>
+      </div>
+
+      <div class="about-cards fade-up">
+        <div class="about-card corporate">
+          <div class="card-icon">⬡ Corporate Identity</div>
+          <h3 class="card-heading">The Strategist</h3>
+          <p class="card-body">Grounded in finance, corporate law, and governance. Certified in Advanced Excel, Financial Markets, Google Digital, and Effective Communication. Former House Captain. CS Executive in progress — the gold standard for corporate secretarial careers in India. A rigorous candidate for any company seeking someone who understands the architecture of business.</p>
+        </div>
+        <div class="about-card creative">
+          <div class="card-icon">◇ Creative Identity</div>
+          <h3 class="card-heading">The Maker</h3>
+          <p class="card-body">Fashion illustrator spanning Indian bridal couture to retro-futurist editorial. Essayist and prose poet published in LU Chronicles. Content writer with empathy at the core — ideal for brands in wellness, lifestyle, fashion, and education who need writing that actually connects with people.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section class="ventures" id="ventures">
+  <div class="section-inner">
+    <div class="ventures-header fade-up">
+      <div>
+        <div class="section-label">Work & Ventures</div>
+        <h2 class="ventures-title">What I've<br>been building.</h2>
+      </div>
+      <div class="ventures-note">From campus counseling to hyperlocal fashion — I don't sit still.</div>
+    </div>
+
+    <div class="ventures-grid fade-up">
+      <div class="venture-card has-link" onclick="window.open('https://marude.lovable.app','_blank')">
+        <div class="venture-num">01</div>
+        <div class="venture-tag startup">Startup · Live</div>
+        <div class="venture-name">Marude</div>
+        <div class="venture-role">Founder & Visionary</div>
+        <p class="venture-desc">A hyperlocal fashion delivery startup connecting local boutiques and designers with customers who want style without compromise. Pitched at the University of Lucknow's Pitch a Product competition.</p>
+        <div class="link-hint">Visit Website →</div>
+      </div>
+
+      <div class="venture-card has-link" onclick="window.open('https://studywing-co-studyingspaces.lovable.app','_blank')">
+        <div class="venture-num">02</div>
+        <div class="venture-tag startup">Startup · Live</div>
+        <div class="venture-name">Study Wing</div>
+        <div class="venture-role">Founder</div>
+        <p class="venture-desc">A platform connecting students with dedicated, distraction-free study spaces. Born from the real problem of finding focus in a city full of noise. Active digital presence with a growing community.</p>
+        <div class="link-hint">Visit Website →</div>
+      </div>
+
+      <div class="venture-card">
+        <div class="venture-num">03</div>
+        <div class="venture-tag writing">Content</div>
+        <div class="venture-name">Evolve the World</div>
+        <div class="venture-role">Content Writer</div>
+        <p class="venture-desc">Part-time content writer for a mental health awareness platform — crafting empathetic, purposeful prose that guides readers toward clarity, treating well-being as a fundamental right, not a luxury.</p>
+      </div>
+    </div>
+
+    <div class="ventures-grid fade-up" style="border-top:none; margin-top:0;">
+      <div class="venture-card">
+        <div class="venture-num">04</div>
+        <div class="venture-tag advocacy">Education</div>
+    
