@@ -1,0 +1,108 @@
+<div class="venture-card">
+        <div class="venture-num">04</div>
+        <div class="venture-tag advocacy">Education</div>
+        <div class="venture-name">Speaker's Academy</div>
+        <div class="venture-role">Student Consultant</div>
+        <p class="venture-desc">Assisting students in navigating higher education pathways, focusing on institutional matching and career counseling during a 6-month intensive tenure.</p>
+      </div>
+
+      <div class="venture-card">
+        <div class="venture-num">05</div>
+        <div class="venture-tag writing">Editorial</div>
+        <div class="venture-name">LU Chronicles</div>
+        <div class="venture-role">Contributing Writer</div>
+        <p class="venture-desc">Crafting long-form essays and prose pieces for the University of Lucknow's literary circle, focusing on the intersection of modern feminism and corporate culture.</p>
+      </div>
+
+      <div class="venture-card">
+        <div class="venture-num">06</div>
+        <div class="venture-tag startup">Service</div>
+        <div class="venture-name">femCore</div>
+        <div class="venture-role">Strategy & Content</div>
+        <div class="venture-desc">Developing content strategies for women-led digital initiatives, blending analytical insights with empathetic brand storytelling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="art">
+  <div class="section-inner">
+    <div class="portfolio-intro fade-up">
+      <div>
+        <div class="section-label">Art & Design</div>
+        <h2 class="portfolio-title">The <em>Fashion</em><br>Portfolio.</h2>
+      </div>
+      <p class="portfolio-description">My illustrations are where my creative soul breathes. From the intricate drapes of Indian bridal couture to the sharp silhouettes of modern power dressing, I explore how clothing reflects the inner strength of the wearer.</p>
+    </div>
+
+    <div class="art-grid fade-up">
+      <div class="art-frame">
+        <div class="gallery-placeholder"><span class="gallery-placeholder-text">Bridal Series 01</span></div>
+        <div class="art-caption"><div class="art-caption-text">Heritage Couture</div><div class="art-medium">Hand-drawn Digital</div></div>
+      </div>
+      <div class="art-frame">
+        <div class="gallery-placeholder"><span class="gallery-placeholder-text">Editorial 02</span></div>
+        <div class="art-caption"><div class="art-caption-text">Modern Silhouette</div><div class="art-medium">Mixed Media</div></div>
+      </div>
+      <div class="art-frame">
+        <div class="gallery-placeholder"><span class="gallery-placeholder-text">Retro 03</span></div>
+        <div class="art-caption"><div class="art-caption-text">Vintage Revival</div><div class="art-medium">Ink & Wash</div></div>
+      </div>
+      <div class="art-frame">
+        <div class="gallery-placeholder"><span class="gallery-placeholder-text">Sketch 04</span></div>
+        <div class="art-caption"><div class="art-caption-text">Anatomy of Flow</div><div class="art-medium">Charcoal Digital</div></div>
+      </div>
+    </div>
+
+    <div class="view-more-row">
+      <button class="btn-view-more" onclick="openGallery()">View Full Gallery <span class="arrow">→</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-layout fade-up">
+      <div>
+        <h2 class="contact-title">Let’s build the <em>future</em> together.</h2>
+        <p class="contact-tagline">Open for internships (June–August 2026), content collaborations, and creative commissions.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:rastogimanika10@gmail.com" class="contact-link">
+          <div><div class="contact-link-label">Email</div><div class="contact-link-value">rastogimanika10@gmail.com</div></div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://linkedin.com/in/manika-rastogi" target="_blank" class="contact-link">
+          <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">manika-rastogi</div></div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-footer">
+      <div class="contact-footer-left">© 2026 MANIKA RASTOGI — ALL RIGHTS RESERVED.</div>
+      <div class="contact-footer-right">"Long live all the magic we made."</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Intersection Observer for Fade-Up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Navbar Scroll Logic
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Simple Gallery Modal Logic
+  function openGallery() { document.getElementById('galleryPage').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeGallery() { document.getElementById('galleryPage').classList.remove('open'); document.body.style.overflow = 'auto'; }
+</script>
+</body>
+</html>
